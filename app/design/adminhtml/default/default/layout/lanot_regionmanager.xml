@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento backend layout
+ *
+ * @author Lanot
+ */
+-->
+<layout>
+
+    <lanot_regionmanager_adminhtml_region_index>
+        <reference name="content">
+            <block type="lanot_regionmanager/adminhtml_region_locale_switcher"
+                   template="lanot/regionmanager/locale/switcher.phtml"
+                   name="regionmanager_region_locale_switcher"
+            />
+            <block type="lanot_regionmanager/adminhtml_region" name="regionmanager_region" />
+        </reference>
+    </lanot_regionmanager_adminhtml_region_index>
+
+    <lanot_regionmanager_adminhtml_region_grid>
+        <block type="lanot_regionmanager/adminhtml_region_grid" name="root"/>
+    </lanot_regionmanager_adminhtml_region_grid>
+
+    <lanot_regionmanager_adminhtml_region_new>
+        <update handle="lanot_regionmanager_adminhtml_region_edit" />
+    </lanot_regionmanager_adminhtml_region_new>
+
+    <lanot_regionmanager_adminhtml_region_edit>
+        <update handle="lanot_lightbox"/>
+        <reference name="content">
+            <block type="lanot_regionmanager/adminhtml_region_edit" name="regionmanager_region_edit" />
+        </reference>
+        <reference name="left">
+            <block type="lanot_regionmanager/adminhtml_region_edit_tabs" name="region_edit_tabs">
+                <action method="addTab">
+                    <name>region_main_info</name>
+                    <block>lanot_regionmanager/adminhtml_region_edit_tab_main</block>
+                </action>
+            </block>
+        </reference>
+    </lanot_regionmanager_adminhtml_region_edit>
+
+
+    <lanot_regionmanager_adminhtml_region_regiongrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="lanot_regionmanager/adminhtml_product_edit_tabs_region_grid" name="product.edit.tab.grid.region"/>
+            <block type="adminhtml/widget_grid_serializer" name="product_region_grid_serializer">
+                <reference name="product_region_grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>product.edit.tab.grid.region</grid_block_name>
+                        <data_callback>getSelectedLinks</data_callback>
+                        <hidden_input_name>product[lanot_regions]</hidden_input_name>
+                        <reload_param_name>regions_in_selected</reload_param_name>
+                    </action>
+                </reference>
+            </block>
+        </block>
+    </lanot_regionmanager_adminhtml_region_regiongrid>
+    
+    <lanot_regionmanager_adminhtml_region_regiongridonly>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="lanot_regionmanager/adminhtml_product_edit_tabs_region_grid" name="product.edit.tab.grid.region"/>
+        </block>
+    </lanot_regionmanager_adminhtml_region_regiongridonly>
+</layout>

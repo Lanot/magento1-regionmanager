@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<config>
+    <!--/MENU -->
+    <menu>
+        <lanot translate="title">
+            <title>Lanot</title>
+            <sort_order>65</sort_order>
+            <children>
+                <lanot_regionmanager translate="title" module="lanot_regionmanager">
+                    <title>Manage Regions</title>
+                    <action>lanot_regionmanager/adminhtml_region</action>
+                    <sort_order>100</sort_order>
+                </lanot_regionmanager>
+            </children>
+        </lanot>
+    </menu>
+    <!--/MENU -->
+
+    <!--ACL -->
+    <acl>
+        <resources>
+            <admin>
+                <children>
+
+                    <lanot>
+                        <title>Lanot</title>
+                        <sort_order>65</sort_order>
+                        <children>
+                            <lanot_regionmanager translate="title" module="lanot_regionmanager">
+                                <title>Lanot Regions</title>
+                                <sort_order>65</sort_order>
+
+                                <children>
+                                    <manage_region translate="title">
+                                        <title>Manage Regions</title>
+                                        <sort_order>0</sort_order>
+                                        <children>
+                                            <save translate="title">
+                                                <title>Save Regions</title>
+                                                <sort_order>0</sort_order>
+                                            </save>
+                                            <delete translate="title">
+                                                <title>Delete Regions</title>
+                                                <sort_order>10</sort_order>
+                                            </delete>
+                                        </children>
+                                    </manage_region>
+                                </children>
+
+                            </lanot_regionmanager>
+                        </children>
+                    </lanot>
+
+                </children>
+            </admin>
+        </resources>
+    </acl>
+    <!--/ACL -->
+</config>

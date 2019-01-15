@@ -1,0 +1,21 @@
+<?php
+/** @var $this Lanot_RegionManager_Block_Adminhtml_Region_Locale_Switcher */
+$id = $this->getCurrentLocale();
+?>
+<?php if ($locales = $this->getOptions()): ?>
+<p class="switcher">
+    <label for="locale_switcher"><?php echo $this->__('Choose Locale') ?>:</label>
+    <select name="locale_switcher" id="locale_switcher" onchange="return switchLocaleId(this);">
+        <?php foreach ($locales as $locale): ?>
+        <option value="<?php echo $locale['value'] ?>"<?php if ($locale['value'] == $id): ?>
+                selected="selected"<?php endif; ?>><?php echo $locale['label'] ?></option>
+        <?php endforeach; ?>
+    </select>
+</p>
+<script type="text/javascript">
+    function switchLocaleId(obj) {
+        var _param = obj.value ? '<?php echo $this->getLocaleVarName()?>/' + obj.value + '/' : '';
+        setLocation('<?php echo $this->getSwitchUrl() ?>' + _param);
+    }
+</script>
+<?php endif; ?>

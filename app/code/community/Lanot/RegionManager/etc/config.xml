@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+    <modules>
+        <Lanot_RegionManager>
+            <version>1.0.1</version>
+        </Lanot_RegionManager>
+    </modules>
+
+    <global>
+        <helpers>
+            <lanot_regionmanager>
+                <class>Lanot_RegionManager_Helper</class>
+            </lanot_regionmanager>
+        </helpers>
+
+        <blocks>
+            <lanot_regionmanager>
+                <class>Lanot_RegionManager_Block</class>
+            </lanot_regionmanager>
+        </blocks>
+
+        <models>
+            <lanot_regionmanager>
+                <class>Lanot_RegionManager_Model</class>
+                <resourceModel>lanot_regionmanager_resource</resourceModel>
+            </lanot_regionmanager>
+            <lanot_regionmanager_resource>
+                <class>Lanot_RegionManager_Model_Mysql4</class>
+            </lanot_regionmanager_resource>
+        </models>
+    </global>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <lanot_regionmanager>
+                    <file>lanot_regionmanager.xml</file>
+                </lanot_regionmanager>
+            </updates>
+        </layout>
+        <!-- ADMIN EVENTS -->
+        <events>
+            <region_lanot_grid_prepare_collection>
+                <observers>
+                    <region_lanot_grid_prepare_collection>
+                        <class>lanot_regionmanager/observer</class>
+                        <method>addLocalNameToSelect</method>
+                    </region_lanot_grid_prepare_collection>
+                </observers>
+            </region_lanot_grid_prepare_collection>
+            <region_lanot_grid_prepare_massaction>
+                <observers>
+                    <region_lanot_grid_prepare_massaction>
+                        <class>lanot_regionmanager/observer</class>
+                        <method>removeMassActions</method>
+                    </region_lanot_grid_prepare_massaction>
+                </observers>
+            </region_lanot_grid_prepare_massaction>
+        </events>
+        <!-- /ADMIN EVENTS -->
+    </adminhtml>
+
+    <admin>
+        <routers>
+            <lanot_regionmanager>
+                <use>admin</use>
+                <args>
+                    <module>Lanot_RegionManager</module>
+                    <frontName>lanot_regionmanager</frontName>
+                </args>
+            </lanot_regionmanager>
+        </routers>
+    </admin>
+</config>
